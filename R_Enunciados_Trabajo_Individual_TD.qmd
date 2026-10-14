@@ -1,0 +1,82 @@
+---
+title: "Enunciados Problemas Individuales - Teoría de la Decisión"
+author: "Victoria Giménez Vioque"
+format: 
+ html: default
+ pdf: default
+editor: visual
+---
+
+## PROBLEMA 1 (INCERTIDUMBRE)
+
+Una marca de ropa sevillana está planificando su línea principal de producción para la próxima campaña de otoño-invierno. Los beneficios dependerán de la meteorología, la cual es incierta.
+
+**Alternativas de decisión:**
+
+- **A1 (Alta Montaña):** Abrigos muy gruesos y térmicos. Alto coste de producción, margen de beneficio muy alto, pero riesgo elevado si no hace frío.
+- **A2 (Casual/Urbana):** Ropa de abrigo de grosor medio. Coste de producción medio, margen estable y riesgo moderado por su gran versatilidad.
+- **A3 (Básicos de Entretiempo):** Sudaderas y chaquetas ligeras. Coste de producción bajo, margen moderado y ventas muy seguras si el clima es cálido.
+- **A4 (Línea Waterproof):** Chubasqueros y calzado impermeable. Coste de producción medio-alto, margen alto, pero ventas totalmente dependientes de la lluvia.
+- **A5 (Outlet/Liquidación):** Vender el remanente del año anterior. Coste de producción nulo (ya está fabricado), margen de beneficio bajo por los descuentos, pero riesgo cero.
+
+**Estados de la naturaleza:**
+
+- **E1 (Muy frío y seco):** Ola de frío prolongada.
+- **E2 (Invierno estándar):** Temperaturas normales para la época.
+- **E3 (Cálido):** Temperaturas altas, el frío tarda meses en llegar.
+- **E4 (Muy lluvioso/Inestable):** Lluvias constantes y fuertes.
+
+**Tabla de Beneficios (en miles de euros):**
+
+| Alternativas / Clima | E1 (Frío y seco) | E2 (Estándar) | E3 (Cálido) | E4 (Lluvioso) |
+|:--------------|:--------------|:--------------|:--------------|:--------------|
+| **A1 (Alta Montaña)** | 150 | 60 | -30 | 10 |
+| **A2 (Casual/Urbana)** | 90 | 100 | 30 | 50 |
+| **A3 (Entretiempo)** | 20 | 50 | 90 | 40 |
+| **A4 (Waterproof)** | 60 | 50 | 10 | 130 |
+| **A5 (Outlet)** | 40 | 40 | 40 | 40 |
+
+**PREGUNTAS VERDADERO/FALSO**
+
+1.  **Sobre el comportamiento de Wald:** El criterio de Wald selecciona la misma alternativa (A5) tanto si asumimos que los datos representan beneficios (situación favorable) como si asumimos que representan costes (situación desfavorable).
+2.  **Sobre la matriz de Savage:** Para aplicar el criterio de Savage en situación de beneficios, se construye una matriz de arrepentimientos o costes de oportunidad. En dicha matriz, el mayor arrepentimiento posible si ocurre el estado E1 (Muy frío y seco) es de 130 miles de euros.
+3.  **Sobre el índice de Hurwicz:** Si en el criterio de Hurwicz (situación favorable) aplicásemos un índice de optimismo extremo de $\alpha = 1$, la alternativa seleccionada coincidiría exactamente con la elegida por el criterio de Wald.
+4.  **Sobre el supuesto de Laplace:** El criterio de Laplace selecciona la alternativa A2 (Casual/Urbana) porque asume lógicamente que el estado E2 (Invierno estándar) tiene una probabilidad de ocurrencia mucho mayor que los climas extremos.
+5.  **Sobre el Punto Ideal:** En la resolución de la situación desfavorable (costes), el método del Punto Ideal calcula la distancia euclídea de cada alternativa frente a un escenario ficticio ideal compuesto por los valores (-30, 40, -30, 10).
+
+## PROBLEMA 2 (CASO REAL)
+
+Una heladería del centro de Sevilla sufre una caída drástica de clientes durante los meses de invierno. La dueña está evaluando diferentes estrategias para adaptar su oferta de productos y mantener la rentabilidad del local durante la temporada de frío. El éxito de cada estrategia dependerá de cómo se presente el clima este invierno.
+
+**Alternativas de decisión:**
+
+- **A1 (Mantener Helados):** No cambiar nada. Coste nulo de adaptación. Grandes beneficios si hace buen tiempo, pero fuertes pérdidas si el clima empeora.
+- **A2 (Gofres y Crepes):** Invertir en maquinaria para repostería caliente. Pérdidas si el invierno es cálido (no se recupera la inversión), pero muy rentable si hace un frío seco.
+- **A3 (Cafetería Básica):** Ofrecer café y bollería tradicional. Inversión baja y ventas moderadas pero muy constantes, independientemente del clima.
+- **A4 (Servicio de Delivery):** Invertir en packaging y comisiones de apps (Glovo/Uber). Flojo en días buenos, pero arrasa en ventas si llueve y la gente no sale de casa.
+- **A5 (Reducir Jornada y Personal):** Abrir solo los fines de semana para minimizar costes fijos. Asegura beneficios bajos pero evita riesgos y grandes pérdidas.
+
+**Estados de la naturaleza:**
+
+- **E1 (Invierno Cálido):** Temperaturas primaverales, la gente pasea por el centro.
+- **E2 (Invierno Normal):** Fresco moderado habitual.
+- **E3 (Frío y Seco):** Bajas temperaturas que invitan a consumir productos calientes paseando.
+- **E4 (Lluvioso e Inestable):** Lluvia constante que vacía las calles peatonales.
+
+**Tabla de Beneficios Esperados (en miles de euros):**
+
+| Alternativas / Clima | E1 (Cálido) | E2 (Normal) | E3 (Frío Seco) | E4 (Lluvioso) |
+|:--------------|:--------------|:--------------|:--------------|:--------------|
+| **A1 (Helados)** | 80 | 20 | -10 | -30 |
+| **A2 (Gofres y Crepes)** | -15 | 40 | 70 | 30 |
+| **A3 (Cafetería Básica)** | 20 | 25 | 30 | 10 |
+| **A4 (Servicio Delivery)** | 5 | 15 | 40 | 85 |
+| **A5 (Reducir Jornada)** | 35 | 35 | 20 | 15 |
+
+**PREGUNTAS VERDADERO/FALSO**
+
+1.  **Sobre el criterio de Wald (Pesimista):** Ante el miedo a perder dinero, el criterio de Wald recomienda la alternativa A5 (Reducir Jornada), ya que garantiza un beneficio mínimo de 15.000€ en el peor de los casos (lluvia).
+2.  **Sobre el criterio Optimista:** El criterio Optimista selecciona la alternativa A1 (Helados) porque busca el beneficio máximo absoluto en un escenario cálido.
+3.  **Sobre la matriz de Savage:** Si la dueña elige la alternativa A2 (Gofres) y el invierno resulta ser muy cálido (E1), sufrirá el mayor coste de oportunidad de toda la matriz, alcanzando un arrepentimiento de 95.000€.
+4.  **Sobre el criterio de Laplace:** Al haber 4 estados climáticos posibles, el criterio de Laplace asume basándose en el Principio de Razón Insuficiente que cada uno tiene exactamente un 25% de probabilidad de ocurrir.
+5.  **Sobre la decisión global:** La alternativa A4 (Servicio Delivery) resulta ser una opción muy potente matemáticamente, siendo la ganadora bajo los criterios de Laplace, Optimista y Hurwicz.

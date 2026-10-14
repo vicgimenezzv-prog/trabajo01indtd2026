@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Victoria Giménez Vioque">
+
+<title>Problemas Individuales - Teoría de la Decisión</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="R_Trabajo_Individual_TD_files/libs/clipboard/clipboard.min.js"></script>
+<script src="R_Trabajo_Individual_TD_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="R_Trabajo_Individual_TD_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="R_Trabajo_Individual_TD_files/libs/quarto-html/popper.min.js"></script>
+<script src="R_Trabajo_Individual_TD_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="R_Trabajo_Individual_TD_files/libs/quarto-html/anchor.min.js"></script>
+<link href="R_Trabajo_Individual_TD_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="R_Trabajo_Individual_TD_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="R_Trabajo_Individual_TD_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="R_Trabajo_Individual_TD_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="R_Trabajo_Individual_TD_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="R_Trabajo_Individual_TD.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Problemas Individuales - Teoría de la Decisión</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Victoria Giménez Vioque </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="problema-1-incertidumbre" class="level2">
+<h2 class="anchored" data-anchor-id="problema-1-incertidumbre">PROBLEMA 1 (INCERTIDUMBRE)</h2>
+<p>Una marca de ropa sevillana está planificando su línea principal de producción para la próxima campaña de otoño-invierno. Los beneficios dependerán de la meteorología, la cual es incierta.</p>
+<p><strong>Alternativas de decisión:</strong></p>
+<ul>
+<li><strong>A1 (Alta Montaña):</strong> Abrigos muy gruesos y térmicos. Alto coste de producción, margen de beneficio muy alto, pero riesgo elevado si no hace frío.</li>
+<li><strong>A2 (Casual/Urbana):</strong> Ropa de abrigo de grosor medio. Coste de producción medio, margen estable y riesgo moderado por su gran versatilidad.</li>
+<li><strong>A3 (Básicos de Entretiempo):</strong> Sudaderas y chaquetas ligeras. Coste de producción bajo, margen moderado y ventas muy seguras si el clima es cálido.</li>
+<li><strong>A4 (Línea Waterproof):</strong> Chubasqueros y calzado impermeable. Coste de producción medio-alto, margen alto, pero ventas totalmente dependientes de la lluvia.</li>
+<li><strong>A5 (Outlet/Liquidación):</strong> Vender el remanente del año anterior. Coste de producción nulo (ya está fabricado), margen de beneficio bajo por los descuentos, pero riesgo cero.</li>
+</ul>
+<p><strong>Estados de la naturaleza:</strong></p>
+<ul>
+<li><strong>E1 (Muy frío y seco):</strong> Ola de frío prolongada.</li>
+<li><strong>E2 (Invierno estándar):</strong> Temperaturas normales para la época.</li>
+<li><strong>E3 (Cálido):</strong> Temperaturas altas, el frío tarda meses en llegar.</li>
+<li><strong>E4 (Muy lluvioso/Inestable):</strong> Lluvias constantes y fuertes.</li>
+</ul>
+<p><strong>Tabla de Beneficios (en miles de euros):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Alternativas / Clima</th>
+<th style="text-align: left;">E1 (Frío y seco)</th>
+<th style="text-align: left;">E2 (Estándar)</th>
+<th style="text-align: left;">E3 (Cálido)</th>
+<th style="text-align: left;">E4 (Lluvioso)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>A1 (Alta Montaña)</strong></td>
+<td style="text-align: left;">150</td>
+<td style="text-align: left;">60</td>
+<td style="text-align: left;">-30</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A2 (Casual/Urbana)</strong></td>
+<td style="text-align: left;">90</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A3 (Entretiempo)</strong></td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">90</td>
+<td style="text-align: left;">40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A4 (Waterproof)</strong></td>
+<td style="text-align: left;">60</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">130</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A5 (Outlet)</strong></td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">40</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resolución del problema</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cargamos el fichero de funciones</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"teoriadecision_funciones_incertidumbre.R"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Creamos la matriz usando la función crea.tablaX</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>datos_p1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">60</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="dv">10</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">30</span>, <span class="dv">50</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">90</span>, <span class="dv">40</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="dv">60</span>, <span class="dv">50</span>, <span class="dv">10</span>, <span class="dv">130</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>nombres_alt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A1 (Alta Montana)"</span>, <span class="st">"A2 (Casual)"</span>, <span class="st">"A3 (Entretiempo)"</span>, <span class="st">"A4 (Waterproof)"</span>, <span class="st">"A5 (Outlet)"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>nombres_est <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"E1 (Frio/Seco)"</span>, <span class="st">"E2 (Estandar)"</span>, <span class="st">"E3 (Calido)"</span>, <span class="st">"E4 (Lluvioso)"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>tabla_p1 <span class="ot">&lt;-</span> <span class="fu">crea.tablaX</span>(<span class="at">vector_matporfilas =</span> datos_p1, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">numalternativas =</span> <span class="dv">5</span>, </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">numestados =</span> <span class="dv">4</span>, </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nb_alternativas =</span> nombres_alt, </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nb_estados =</span> nombres_est)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la tabla</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- TABLA DE DECISIÓN ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- TABLA DE DECISIÓN ---</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tabla_p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40</code></pre>
+</div>
+</div>
+<p><strong>RESULTADOS SITUACIÓN FAVORABLE</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ========================================================</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RESOLUCIÓN 1: SITUACIÓN FAVORABLE (Asumiendo Beneficios)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ========================================================</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">=== RESULTADOS SITUACIÓN FAVORABLE (BENEFICIOS) ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+=== RESULTADOS SITUACIÓN FAVORABLE (BENEFICIOS) ===</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Wald"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+              -30                30                20                10 
+      A5 (Outlet) 
+               40 
+
+$ValorOptimo
+[1] 40
+
+$AlternativaOptima
+A5 (Outlet) 
+          5 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Optimista</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Optimista"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+              150               100                90               130 
+      A5 (Outlet) 
+               40 
+
+$ValorOptimo
+[1] 150
+
+$AlternativaOptima
+A1 (Alta Montana) 
+                1 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_p1, <span class="at">alfa =</span> <span class="fl">0.6</span>, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Hurwicz"
+
+$alfa
+[1] 0.6
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+               78                72                62                82 
+      A5 (Outlet) 
+               40 
+
+$ValorOptimo
+[1] 82
+
+$AlternativaOptima
+A4 (Waterproof) 
+              4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Laplace</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Laplace"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+             47.5              67.5              50.0              62.5 
+      A5 (Outlet) 
+             40.0 
+
+$ValorOptimo
+[1] 67.5
+
+$AlternativaOptima
+A2 (Casual) 
+          2 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Savage</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Savage"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$Mejores
+E1 (Frio/Seco)  E2 (Estandar)    E3 (Calido)  E4 (Lluvioso) 
+           150            100             90            130 
+
+$Pesos
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)              0            40         120           120
+A2 (Casual)                   60             0          60            80
+A3 (Entretiempo)             130            50           0            90
+A4 (Waterproof)               90            50          80             0
+A5 (Outlet)                  110            60          50            90
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+              120                80               130                90 
+      A5 (Outlet) 
+              110 
+
+$ValorOptimo
+[1] 80
+
+$AlternativaOptima
+A2 (Casual) 
+          2 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.PuntoIdeal</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Punto Ideal"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$Mejores
+E1 (Frio/Seco)  E2 (Estandar)    E3 (Calido)  E4 (Lluvioso) 
+           150            100             90            130 
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+         174.3560          116.6190          165.8312          130.3840 
+      A5 (Outlet) 
+         162.1727 
+
+$ValorOptimo
+[1] 116.619
+
+$AlternativaOptima
+A2 (Casual) 
+          2 </code></pre>
+</div>
+</div>
+<p><strong>Conclusión (Situación Favorable - Beneficios):</strong> Si asumimos que los datos son beneficios, la decisión óptima recomendada es la <strong>A2 (Casual/Urbana)</strong>. En este escenario hay mucha división: el criterio Optimista busca el máximo absoluto (A1), Hurwicz pondera los picos (A4), y Wald se va a la opción más conservadora para asegurar ganancias (A5). Sin embargo, la alternativa A2 se erige como la ganadora final al ser la elegida por la mayoría de los métodos de equilibrio (Laplace, Savage y Punto Ideal), ya que ofrece una rentabilidad media alta minimizando el coste de oportunidad frente a la incertidumbre climática.</p>
+<p><strong>RESULTADOS SITUACIÓN DESFAVORABLE</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =======================================================</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RESOLUCIÓN 2: SITUACIÓN DESFAVORABLE (Asumiendo Costes)</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =======================================================</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">=== RESULTADOS SITUACIÓN DESFAVORABLE (COSTES) ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+=== RESULTADOS SITUACIÓN DESFAVORABLE (COSTES) ===</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Wald"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+              150               100                90               130 
+      A5 (Outlet) 
+               40 
+
+$ValorOptimo
+[1] 40
+
+$AlternativaOptima
+A5 (Outlet) 
+          5 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Optimista</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Optimista"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+              -30                30                20                10 
+      A5 (Outlet) 
+               40 
+
+$ValorOptimo
+[1] -30
+
+$AlternativaOptima
+A1 (Alta Montana) 
+                1 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_p1, <span class="at">alfa =</span> <span class="fl">0.6</span>, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Hurwicz"
+
+$alfa
+[1] 0.6
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+               42                58                48                58 
+      A5 (Outlet) 
+               40 
+
+$ValorOptimo
+[1] 40
+
+$AlternativaOptima
+A5 (Outlet) 
+          5 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Laplace</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Laplace"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+             47.5              67.5              50.0              62.5 
+      A5 (Outlet) 
+             40.0 
+
+$ValorOptimo
+[1] 40
+
+$AlternativaOptima
+A5 (Outlet) 
+          5 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Savage</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Savage"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$Mejores
+E1 (Frio/Seco)  E2 (Estandar)    E3 (Calido)  E4 (Lluvioso) 
+            20             40            -30             10 
+
+$Pesos
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            130            20           0             0
+A2 (Casual)                   70            60          60            40
+A3 (Entretiempo)               0            10         120            30
+A4 (Waterproof)               40            10          40           120
+A5 (Outlet)                   20             0          70            30
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+              130                70               120               120 
+      A5 (Outlet) 
+               70 
+
+$ValorOptimo
+[1] 70
+
+$AlternativaOptima
+A2 (Casual) A5 (Outlet) 
+          2           5 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.PuntoIdeal</span>(tabla_p1, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Punto Ideal"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                  E1 (Frio/Seco) E2 (Estandar) E3 (Calido) E4 (Lluvioso)
+A1 (Alta Montana)            150            60         -30            10
+A2 (Casual)                   90           100          30            50
+A3 (Entretiempo)              20            50          90            40
+A4 (Waterproof)               60            50          10           130
+A5 (Outlet)                   40            40          40            40
+
+$Mejores
+E1 (Frio/Seco)  E2 (Estandar)    E3 (Calido)  E4 (Lluvioso) 
+            20             40            -30             10 
+
+$ValorAlternativas
+A1 (Alta Montana)       A2 (Casual)  A3 (Entretiempo)   A4 (Waterproof) 
+        131.52946         117.04700         124.09674         133.04135 
+      A5 (Outlet) 
+         78.74008 
+
+$ValorOptimo
+[1] 78.74008
+
+$AlternativaOptima
+A5 (Outlet) 
+          5 </code></pre>
+</div>
+</div>
+<p><strong>Conclusión (Situación Desfavorable - Costes):</strong> Si asumimos que los datos son costes (y por tanto buscamos minimizarlos), la decisión óptima recomendada es la <strong>A5 (Outlet/Liquidación)</strong>. Prácticamente todos los métodos conservadores y de equilibrio (Wald, Hurwicz, Laplace y Punto Ideal) coinciden en esta opción. Al tener un rendimiento constante de 40 en todos los escenarios, la alternativa A5 elimina por completo el riesgo de sufrir los altísimos costes que presentan otras alternativas (como los 150 de la A1), convirtiéndola en la opción más segura y matemáticamente estable.</p>
+<p><strong>PREGUNTAS VERDADERO/FALSO</strong></p>
+<ol type="1">
+<li><strong>Sobre el comportamiento de Wald:</strong> El criterio de Wald selecciona la misma alternativa (A5) tanto si asumimos que los datos representan beneficios (situación favorable) como si asumimos que representan costes (situación desfavorable).</li>
+<li><strong>Sobre la matriz de Savage:</strong> Para aplicar el criterio de Savage en situación de beneficios, se construye una matriz de arrepentimientos o costes de oportunidad. En dicha matriz, el mayor arrepentimiento posible si ocurre el estado E1 (Muy frío y seco) es de 130 miles de euros.</li>
+<li><strong>Sobre el índice de Hurwicz:</strong> Si en el criterio de Hurwicz (situación favorable) aplicásemos un índice de optimismo extremo de <span class="math inline">\(\alpha = 1\)</span>, la alternativa seleccionada coincidiría exactamente con la elegida por el criterio de Wald.</li>
+<li><strong>Sobre el supuesto de Laplace:</strong> El criterio de Laplace selecciona la alternativa A2 (Casual/Urbana) porque asume lógicamente que el estado E2 (Invierno estándar) tiene una probabilidad de ocurrencia mucho mayor que los climas extremos.</li>
+<li><strong>Sobre el Punto Ideal:</strong> En la resolución de la situación desfavorable (costes), el método del Punto Ideal calcula la distancia euclídea de cada alternativa frente a un escenario ficticio ideal compuesto por los valores (-30, 40, -30, 10).</li>
+</ol>
+<p><em>Soluciones y justificación:</em></p>
+<ul>
+<li><strong>1. Verdadero:</strong> En beneficios, Wald busca el máximo de los mínimos (el mínimo de A5 es 40, el más alto). En costes, busca el mínimo de los máximos (el máximo de A5 es 40, el más bajo frente a los 150 de A1 o 130 de A4). Gana en ambas por ser una opción constante y sin riesgo.</li>
+<li><strong>2. Verdadero:</strong> En el estado E1, el valor ideal (máximo beneficio) es 150 (A1). La peor alternativa para ese clima es la A3 (20). El coste de oportunidad o arrepentimiento máximo es la diferencia: <span class="math inline">\(150 - 20 = 130\)</span>.</li>
+<li><strong>3. Falso:</strong> Si <span class="math inline">\(\alpha = 1\)</span>, el criterio de Hurwicz ignora por completo los valores mínimos y se convierte al 100% en el criterio Optimista (Maximax), seleccionando la A1. Wald es justamente el extremo opuesto (pesimista).</li>
+<li><strong>4. Falso:</strong> Laplace no asume que un estado sea más probable que otro. Se basa en el Principio de Razón Insuficiente, el cual asume que todos los estados son exactamente equiprobables (en este caso, 25% de probabilidad cada uno).</li>
+<li><strong>5. Verdadero:</strong> El escenario ideal en una situación de costes se forma con el mínimo coste posible de cada estado (columna). Los mínimos reales de la tabla son efectivamente -30 para E1, 40 para E2, -30 para E3 y 10 para E4.</li>
+</ul>
+</section>
+<section id="problema-2-caso-real" class="level2">
+<h2 class="anchored" data-anchor-id="problema-2-caso-real">PROBLEMA 2 (CASO REAL)</h2>
+<p>Una heladería del centro de Sevilla sufre una caída drástica de clientes durante los meses de invierno. La dueña está evaluando diferentes estrategias para adaptar su oferta de productos y mantener la rentabilidad del local durante la temporada de frío. El éxito de cada estrategia dependerá de cómo se presente el clima este invierno.</p>
+<p><strong>Alternativas de decisión:</strong></p>
+<ul>
+<li><strong>A1 (Mantener Helados):</strong> No cambiar nada. Coste nulo de adaptación. Grandes beneficios si hace buen tiempo, pero fuertes pérdidas si el clima empeora.</li>
+<li><strong>A2 (Gofres y Crepes):</strong> Invertir en maquinaria para repostería caliente. Pérdidas si el invierno es cálido (no se recupera la inversión), pero muy rentable si hace un frío seco.</li>
+<li><strong>A3 (Cafetería Básica):</strong> Ofrecer café y bollería tradicional. Inversión baja y ventas moderadas pero muy constantes, independientemente del clima.</li>
+<li><strong>A4 (Servicio de Delivery):</strong> Invertir en packaging y comisiones de apps (Glovo/Uber). Flojo en días buenos, pero arrasa en ventas si llueve y la gente no sale de casa.</li>
+<li><strong>A5 (Reducir Jornada y Personal):</strong> Abrir solo los fines de semana para minimizar costes fijos. Asegura beneficios bajos pero evita riesgos y grandes pérdidas.</li>
+</ul>
+<p><strong>Estados de la naturaleza:</strong></p>
+<ul>
+<li><strong>E1 (Invierno Cálido):</strong> Temperaturas primaverales, la gente pasea por el centro.</li>
+<li><strong>E2 (Invierno Normal):</strong> Fresco moderado habitual.</li>
+<li><strong>E3 (Frío y Seco):</strong> Bajas temperaturas que invitan a consumir productos calientes paseando.</li>
+<li><strong>E4 (Lluvioso e Inestable):</strong> Lluvia constante que vacía las calles peatonales.</li>
+</ul>
+<p><strong>Tabla de Beneficios Esperados (en miles de euros):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Alternativas / Clima</th>
+<th style="text-align: left;">E1 (Cálido)</th>
+<th style="text-align: left;">E2 (Normal)</th>
+<th style="text-align: left;">E3 (Frío Seco)</th>
+<th style="text-align: left;">E4 (Lluvioso)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>A1 (Helados)</strong></td>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">-10</td>
+<td style="text-align: left;">-30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A2 (Gofres y Crepes)</strong></td>
+<td style="text-align: left;">-15</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A3 (Cafetería Básica)</strong></td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A4 (Servicio Delivery)</strong></td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A5 (Reducir Jornada)</strong></td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">15</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resolución del problema (Beneficios):</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos la matriz</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>datos_p2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">20</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">30</span>,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">15</span>, <span class="dv">40</span>, <span class="dv">70</span>, <span class="dv">30</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>              <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">10</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>              <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">40</span>, <span class="dv">85</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>              <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">20</span>, <span class="dv">15</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>nombres_alt2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A1 (Helados)"</span>, <span class="st">"A2 (Gofres)"</span>, <span class="st">"A3 (Cafeteria)"</span>, <span class="st">"A4 (Delivery)"</span>, <span class="st">"A5 (Reducir Jornada)"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>nombres_est2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"E1 (Calido)"</span>, <span class="st">"E2 (Normal)"</span>, <span class="st">"E3 (Frio Seco)"</span>, <span class="st">"E4 (Lluvioso)"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>tabla_p2 <span class="ot">&lt;-</span> <span class="fu">crea.tablaX</span>(<span class="at">vector_matporfilas =</span> datos_p2, </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">numalternativas =</span> <span class="dv">5</span>, </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">numestados =</span> <span class="dv">4</span>, </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nb_alternativas =</span> nombres_alt2, </span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nb_estados =</span> nombres_est2)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- TABLA DE DECISIÓN (PROBLEMA 2) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- TABLA DE DECISIÓN (PROBLEMA 2) ---</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tabla_p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     E1 (Calido) E2 (Normal) E3 (Frio Seco) E4 (Lluvioso)
+A1 (Helados)                  80          20            -10           -30
+A2 (Gofres)                  -15          40             70            30
+A3 (Cafeteria)                20          25             30            10
+A4 (Delivery)                  5          15             40            85
+A5 (Reducir Jornada)          35          35             20            15</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">=== RESOLUCIÓN CONJUNTA (CRITERIO.TODOS) ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+=== RESOLUCIÓN CONJUNTA (CRITERIO.TODOS) ===</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos la función para calcular todos los criterios a la vez</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>res_todos <span class="ot">&lt;-</span> <span class="fu">criterio.Todos</span>(tabla_p2, <span class="at">alfa =</span> <span class="fl">0.6</span>, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>res_todos</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     E1 (Calido) E2 (Normal) E3 (Frio Seco) E4 (Lluvioso)
+A1 (Helados)                  80          20            -10           -30
+A2 (Gofres)                  -15          40             70            30
+A3 (Cafeteria)                20          25             30            10
+A4 (Delivery)                  5          15             40            85
+A5 (Reducir Jornada)          35          35             20            15
+iAlt.Opt (fav.)               --          --             --            --
+                                     Wald     Optimista       Hurwicz
+A1 (Helados)                          -30            80            36
+A2 (Gofres)                           -15            70            36
+A3 (Cafeteria)                         10            30            22
+A4 (Delivery)                           5            85            53
+A5 (Reducir Jornada)                   15            35            27
+iAlt.Opt (fav.)      A5 (Reducir Jornada) A4 (Delivery) A4 (Delivery)
+                                   Savage       Laplace   Punto Ideal
+A1 (Helados)                          115         15.00        141.51
+A2 (Gofres)                            95         31.25        109.77
+A3 (Cafeteria)                         75         21.25        105.12
+A4 (Delivery)                          75         36.25         84.56
+A5 (Reducir Jornada)                   70         26.25         97.21
+iAlt.Opt (fav.)      A5 (Reducir Jornada) A4 (Delivery) A4 (Delivery)
+                      Veces Optima
+A1 (Helados)                     0
+A2 (Gofres)                      0
+A3 (Cafeteria)                   0
+A4 (Delivery)                    4
+A5 (Reducir Jornada)             2
+iAlt.Opt (fav.)      A4 (Delivery)</code></pre>
+</div>
+</div>
+<p><strong>Conclusión:</strong> Tras evaluar todas las alternativas, la decisión óptima recomendada para la heladería es la <strong>A4 (Servicio de Delivery)</strong>. Aunque la opción de reducir la jornada (A5) es la más segura para evitar pérdidas según el criterio pesimista de Wald, la alternativa del Delivery es la clara ganadora global. Al ser la elegida por los criterios Optimista, Hurwicz y Laplace, demuestra ser la estrategia más equilibrada: ofrece el mejor rendimiento medio esperado y tiene el potencial de generar los máximos ingresos de toda la tabla si el clima se vuelve adverso (lluvias), compensando con creces los días más flojos.</p>
+<p><strong>PREGUNTAS VERDADERO/FALSO</strong></p>
+<ol type="1">
+<li><strong>Sobre el criterio de Wald (Pesimista):</strong> Ante el miedo a perder dinero, el criterio de Wald recomienda la alternativa A5 (Reducir Jornada), ya que garantiza un beneficio mínimo de 15.000€ en el peor de los casos (lluvia).</li>
+<li><strong>Sobre el criterio Optimista:</strong> El criterio Optimista selecciona la alternativa A1 (Helados) porque busca el beneficio máximo absoluto en un escenario cálido.</li>
+<li><strong>Sobre la matriz de Savage:</strong> Si la dueña elige la alternativa A2 (Gofres) y el invierno resulta ser muy cálido (E1), sufrirá el mayor coste de oportunidad de toda la matriz, alcanzando un arrepentimiento de 95.000€.</li>
+<li><strong>Sobre el criterio de Laplace:</strong> Al haber 4 estados climáticos posibles, el criterio de Laplace asume basándose en el Principio de Razón Insuficiente que cada uno tiene exactamente un 25% de probabilidad de ocurrir.</li>
+<li><strong>Sobre la decisión global:</strong> La alternativa A4 (Servicio Delivery) resulta ser una opción muy potente matemáticamente, siendo la ganadora bajo los criterios de Laplace, Optimista y Hurwicz.</li>
+</ol>
+<p><em>Soluciones y justificación:</em></p>
+<ul>
+<li><strong>1. Verdadero:</strong> Wald maximiza el mínimo de cada alternativa. Los mínimos son: -30 (A1), -15 (A2), 10 (A3), 5 (A4) y 15 (A5). El valor más alto entre los peores escenarios es el 15 de la A5.</li>
+<li><strong>2. Falso:</strong> El criterio Optimista busca el valor más alto de toda la matriz. Ese pico máximo no es el 80 de la A1, sino los 85.000€ que se conseguirían con la alternativa A4 (Delivery) durante un invierno muy lluvioso.</li>
+<li><strong>3. Verdadero:</strong> En un invierno cálido (E1), la opción ideal era vender helados (ganando 80). Si se invirtió en gofres, se pierden 15 (-15). La diferencia entre lo que se pudo ganar (80) y el resultado obtenido (-15) es de <span class="math inline">\(80 - (-15) = 95\)</span>.</li>
+<li><strong>4. Verdadero:</strong> A diferencia del primer problema donde eran 3 estados (33,3%), al añadir el clima lluvioso, Laplace divide las probabilidades a partes iguales entre los 4 estados, es decir, 1/4 o 25% para cada uno.</li>
+<li><strong>5. Verdadero:</strong> Al promediar escenarios (Laplace da 36,25 de media) y ponderar extremos (Optimista con 85, Hurwicz con 53), el Delivery despunta como la mejor inversión global según estos tres criterios racionales.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

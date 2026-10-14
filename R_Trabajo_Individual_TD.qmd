@@ -1,0 +1,193 @@
+---
+title: "Problemas Individuales - Teoría de la Decisión"
+author: "Victoria Giménez Vioque"
+format: 
+ html: default
+ pdf: default
+editor: visual
+---
+
+## PROBLEMA 1 (INCERTIDUMBRE)
+
+Una marca de ropa sevillana está planificando su línea principal de producción para la próxima campaña de otoño-invierno. Los beneficios dependerán de la meteorología, la cual es incierta.
+
+**Alternativas de decisión:**
+
+- **A1 (Alta Montaña):** Abrigos muy gruesos y térmicos. Alto coste de producción, margen de beneficio muy alto, pero riesgo elevado si no hace frío.
+- **A2 (Casual/Urbana):** Ropa de abrigo de grosor medio. Coste de producción medio, margen estable y riesgo moderado por su gran versatilidad.
+- **A3 (Básicos de Entretiempo):** Sudaderas y chaquetas ligeras. Coste de producción bajo, margen moderado y ventas muy seguras si el clima es cálido.
+- **A4 (Línea Waterproof):** Chubasqueros y calzado impermeable. Coste de producción medio-alto, margen alto, pero ventas totalmente dependientes de la lluvia.
+- **A5 (Outlet/Liquidación):** Vender el remanente del año anterior. Coste de producción nulo (ya está fabricado), margen de beneficio bajo por los descuentos, pero riesgo cero.
+
+**Estados de la naturaleza:**
+
+- **E1 (Muy frío y seco):** Ola de frío prolongada.
+- **E2 (Invierno estándar):** Temperaturas normales para la época.
+- **E3 (Cálido):** Temperaturas altas, el frío tarda meses en llegar.
+- **E4 (Muy lluvioso/Inestable):** Lluvias constantes y fuertes.
+
+**Tabla de Beneficios (en miles de euros):**
+
+| Alternativas / Clima | E1 (Frío y seco) | E2 (Estándar) | E3 (Cálido) | E4 (Lluvioso) |
+|:--------------|:--------------|:--------------|:--------------|:--------------|
+| **A1 (Alta Montaña)** | 150 | 60 | -30 | 10 |
+| **A2 (Casual/Urbana)** | 90 | 100 | 30 | 50 |
+| **A3 (Entretiempo)** | 20 | 50 | 90 | 40 |
+| **A4 (Waterproof)** | 60 | 50 | 10 | 130 |
+| **A5 (Outlet)** | 40 | 40 | 40 | 40 |
+
+**Resolución del problema**
+
+```{r, echo=TRUE}
+#Cargamos el fichero de funciones
+source("teoriadecision_funciones_incertidumbre.R")
+
+#Creamos la matriz usando la función crea.tablaX
+datos_p1 <- c(150, 60, -30, 10,
+              90, 100, 30, 50,
+              20, 50, 90, 40,
+              60, 50, 10, 130,
+              40, 40, 40, 40)
+
+nombres_alt <- c("A1 (Alta Montana)", "A2 (Casual)", "A3 (Entretiempo)", "A4 (Waterproof)", "A5 (Outlet)")
+nombres_est <- c("E1 (Frio/Seco)", "E2 (Estandar)", "E3 (Calido)", "E4 (Lluvioso)")
+
+tabla_p1 <- crea.tablaX(vector_matporfilas = datos_p1, 
+                        numalternativas = 5, 
+                        numestados = 4, 
+                        nb_alternativas = nombres_alt, 
+                        nb_estados = nombres_est)
+
+# Mostrar la tabla
+cat("--- TABLA DE DECISIÓN ---\n")
+tabla_p1
+
+```
+
+**RESULTADOS SITUACIÓN FAVORABLE**
+
+```{r, echo=TRUE}
+# ========================================================
+# RESOLUCIÓN 1: SITUACIÓN FAVORABLE (Asumiendo Beneficios)
+# ========================================================
+cat("\n\n=== RESULTADOS SITUACIÓN FAVORABLE (BENEFICIOS) ===\n")
+
+criterio.Wald(tabla_p1, favorable = TRUE)
+criterio.Optimista(tabla_p1, favorable = TRUE)
+criterio.Hurwicz(tabla_p1, alfa = 0.6, favorable = TRUE)
+criterio.Laplace(tabla_p1, favorable = TRUE)
+criterio.Savage(tabla_p1, favorable = TRUE)
+criterio.PuntoIdeal(tabla_p1, favorable = TRUE)
+
+```
+
+**Conclusión (Situación Favorable - Beneficios):** Si asumimos que los datos son beneficios, la decisión óptima recomendada es la **A2 (Casual/Urbana)**. En este escenario hay mucha división: el criterio Optimista busca el máximo absoluto (A1), Hurwicz pondera los picos (A4), y Wald se va a la opción más conservadora para asegurar ganancias (A5). Sin embargo, la alternativa A2 se erige como la ganadora final al ser la elegida por la mayoría de los métodos de equilibrio (Laplace, Savage y Punto Ideal), ya que ofrece una rentabilidad media alta minimizando el coste de oportunidad frente a la incertidumbre climática.
+
+**RESULTADOS SITUACIÓN DESFAVORABLE**
+
+```{r, echo=TRUE}
+# =======================================================
+# RESOLUCIÓN 2: SITUACIÓN DESFAVORABLE (Asumiendo Costes)
+# =======================================================
+cat("\n\n=== RESULTADOS SITUACIÓN DESFAVORABLE (COSTES) ===\n")
+
+criterio.Wald(tabla_p1, favorable = FALSE)
+criterio.Optimista(tabla_p1, favorable = FALSE)
+criterio.Hurwicz(tabla_p1, alfa = 0.6, favorable = FALSE)
+criterio.Laplace(tabla_p1, favorable = FALSE)
+criterio.Savage(tabla_p1, favorable = FALSE)
+criterio.PuntoIdeal(tabla_p1, favorable = FALSE)
+```
+
+**Conclusión (Situación Desfavorable - Costes):** Si asumimos que los datos son costes (y por tanto buscamos minimizarlos), la decisión óptima recomendada es la **A5 (Outlet/Liquidación)**. Prácticamente todos los métodos conservadores y de equilibrio (Wald, Hurwicz, Laplace y Punto Ideal) coinciden en esta opción. Al tener un rendimiento constante de 40 en todos los escenarios, la alternativa A5 elimina por completo el riesgo de sufrir los altísimos costes que presentan otras alternativas (como los 150 de la A1), convirtiéndola en la opción más segura y matemáticamente estable.
+
+**PREGUNTAS VERDADERO/FALSO**
+
+1.  **Sobre el comportamiento de Wald:** El criterio de Wald selecciona la misma alternativa (A5) tanto si asumimos que los datos representan beneficios (situación favorable) como si asumimos que representan costes (situación desfavorable).
+2.  **Sobre la matriz de Savage:** Para aplicar el criterio de Savage en situación de beneficios, se construye una matriz de arrepentimientos o costes de oportunidad. En dicha matriz, el mayor arrepentimiento posible si ocurre el estado E1 (Muy frío y seco) es de 130 miles de euros.
+3.  **Sobre el índice de Hurwicz:** Si en el criterio de Hurwicz (situación favorable) aplicásemos un índice de optimismo extremo de $\alpha = 1$, la alternativa seleccionada coincidiría exactamente con la elegida por el criterio de Wald.
+4.  **Sobre el supuesto de Laplace:** El criterio de Laplace selecciona la alternativa A2 (Casual/Urbana) porque asume lógicamente que el estado E2 (Invierno estándar) tiene una probabilidad de ocurrencia mucho mayor que los climas extremos.
+5.  **Sobre el Punto Ideal:** En la resolución de la situación desfavorable (costes), el método del Punto Ideal calcula la distancia euclídea de cada alternativa frente a un escenario ficticio ideal compuesto por los valores (-30, 40, -30, 10).
+
+*Soluciones y justificación:*
+
+- **1. Verdadero:** En beneficios, Wald busca el máximo de los mínimos (el mínimo de A5 es 40, el más alto). En costes, busca el mínimo de los máximos (el máximo de A5 es 40, el más bajo frente a los 150 de A1 o 130 de A4). Gana en ambas por ser una opción constante y sin riesgo.
+- **2. Verdadero:** En el estado E1, el valor ideal (máximo beneficio) es 150 (A1). La peor alternativa para ese clima es la A3 (20). El coste de oportunidad o arrepentimiento máximo es la diferencia: $150 - 20 = 130$.
+- **3. Falso:** Si $\alpha = 1$, el criterio de Hurwicz ignora por completo los valores mínimos y se convierte al 100% en el criterio Optimista (Maximax), seleccionando la A1. Wald es justamente el extremo opuesto (pesimista).
+- **4. Falso:** Laplace no asume que un estado sea más probable que otro. Se basa en el Principio de Razón Insuficiente, el cual asume que todos los estados son exactamente equiprobables (en este caso, 25% de probabilidad cada uno).
+- **5. Verdadero:** El escenario ideal en una situación de costes se forma con el mínimo coste posible de cada estado (columna). Los mínimos reales de la tabla son efectivamente -30 para E1, 40 para E2, -30 para E3 y 10 para E4.
+
+## PROBLEMA 2 (CASO REAL)
+
+Una heladería del centro de Sevilla sufre una caída drástica de clientes durante los meses de invierno. La dueña está evaluando diferentes estrategias para adaptar su oferta de productos y mantener la rentabilidad del local durante la temporada de frío. El éxito de cada estrategia dependerá de cómo se presente el clima este invierno.
+
+**Alternativas de decisión:**
+
+- **A1 (Mantener Helados):** No cambiar nada. Coste nulo de adaptación. Grandes beneficios si hace buen tiempo, pero fuertes pérdidas si el clima empeora.
+- **A2 (Gofres y Crepes):** Invertir en maquinaria para repostería caliente. Pérdidas si el invierno es cálido (no se recupera la inversión), pero muy rentable si hace un frío seco.
+- **A3 (Cafetería Básica):** Ofrecer café y bollería tradicional. Inversión baja y ventas moderadas pero muy constantes, independientemente del clima.
+- **A4 (Servicio de Delivery):** Invertir en packaging y comisiones de apps (Glovo/Uber). Flojo en días buenos, pero arrasa en ventas si llueve y la gente no sale de casa.
+- **A5 (Reducir Jornada y Personal):** Abrir solo los fines de semana para minimizar costes fijos. Asegura beneficios bajos pero evita riesgos y grandes pérdidas.
+
+**Estados de la naturaleza:**
+
+- **E1 (Invierno Cálido):** Temperaturas primaverales, la gente pasea por el centro.
+- **E2 (Invierno Normal):** Fresco moderado habitual.
+- **E3 (Frío y Seco):** Bajas temperaturas que invitan a consumir productos calientes paseando.
+- **E4 (Lluvioso e Inestable):** Lluvia constante que vacía las calles peatonales.
+
+**Tabla de Beneficios Esperados (en miles de euros):**
+
+| Alternativas / Clima | E1 (Cálido) | E2 (Normal) | E3 (Frío Seco) | E4 (Lluvioso) |
+|:--------------|:--------------|:--------------|:--------------|:--------------|
+| **A1 (Helados)** | 80 | 20 | -10 | -30 |
+| **A2 (Gofres y Crepes)** | -15 | 40 | 70 | 30 |
+| **A3 (Cafetería Básica)** | 20 | 25 | 30 | 10 |
+| **A4 (Servicio Delivery)** | 5 | 15 | 40 | 85 |
+| **A5 (Reducir Jornada)** | 35 | 35 | 20 | 15 |
+
+**Resolución del problema (Beneficios):**
+
+```{r, echo=TRUE}
+# Creamos la matriz
+datos_p2 <- c(80, 20, -10, -30,
+              -15, 40, 70, 30,
+              20, 25, 30, 10,
+              5, 15, 40, 85,
+              35, 35, 20, 15)
+
+nombres_alt2 <- c("A1 (Helados)", "A2 (Gofres)", "A3 (Cafeteria)", "A4 (Delivery)", "A5 (Reducir Jornada)")
+nombres_est2 <- c("E1 (Calido)", "E2 (Normal)", "E3 (Frio Seco)", "E4 (Lluvioso)")
+
+tabla_p2 <- crea.tablaX(vector_matporfilas = datos_p2, 
+                        numalternativas = 5, 
+                        numestados = 4, 
+                        nb_alternativas = nombres_alt2, 
+                        nb_estados = nombres_est2)
+
+cat("--- TABLA DE DECISIÓN (PROBLEMA 2) ---\n")
+tabla_p2
+
+cat("\n\n=== RESOLUCIÓN CONJUNTA (CRITERIO.TODOS) ===\n")
+# Usamos la función para calcular todos los criterios a la vez
+res_todos <- criterio.Todos(tabla_p2, alfa = 0.6, favorable = TRUE)
+res_todos
+```
+
+**Conclusión:** Tras evaluar todas las alternativas, la decisión óptima recomendada para la heladería es la **A4 (Servicio de Delivery)**. Aunque la opción de reducir la jornada (A5) es la más segura para evitar pérdidas según el criterio pesimista de Wald, la alternativa del Delivery es la clara ganadora global. Al ser la elegida por los criterios Optimista, Hurwicz y Laplace, demuestra ser la estrategia más equilibrada: ofrece el mejor rendimiento medio esperado y tiene el potencial de generar los máximos ingresos de toda la tabla si el clima se vuelve adverso (lluvias), compensando con creces los días más flojos.
+
+**PREGUNTAS VERDADERO/FALSO**
+
+1.  **Sobre el criterio de Wald (Pesimista):** Ante el miedo a perder dinero, el criterio de Wald recomienda la alternativa A5 (Reducir Jornada), ya que garantiza un beneficio mínimo de 15.000€ en el peor de los casos (lluvia).
+2.  **Sobre el criterio Optimista:** El criterio Optimista selecciona la alternativa A1 (Helados) porque busca el beneficio máximo absoluto en un escenario cálido.
+3.  **Sobre la matriz de Savage:** Si la dueña elige la alternativa A2 (Gofres) y el invierno resulta ser muy cálido (E1), sufrirá el mayor coste de oportunidad de toda la matriz, alcanzando un arrepentimiento de 95.000€.
+4.  **Sobre el criterio de Laplace:** Al haber 4 estados climáticos posibles, el criterio de Laplace asume basándose en el Principio de Razón Insuficiente que cada uno tiene exactamente un 25% de probabilidad de ocurrir.
+5.  **Sobre la decisión global:** La alternativa A4 (Servicio Delivery) resulta ser una opción muy potente matemáticamente, siendo la ganadora bajo los criterios de Laplace, Optimista y Hurwicz.
+
+*Soluciones y justificación:*
+
+- **1. Verdadero:** Wald maximiza el mínimo de cada alternativa. Los mínimos son: -30 (A1), -15 (A2), 10 (A3), 5 (A4) y 15 (A5). El valor más alto entre los peores escenarios es el 15 de la A5.
+- **2. Falso:** El criterio Optimista busca el valor más alto de toda la matriz. Ese pico máximo no es el 80 de la A1, sino los 85.000€ que se conseguirían con la alternativa A4 (Delivery) durante un invierno muy lluvioso.
+- **3. Verdadero:** En un invierno cálido (E1), la opción ideal era vender helados (ganando 80). Si se invirtió en gofres, se pierden 15 (-15). La diferencia entre lo que se pudo ganar (80) y el resultado obtenido (-15) es de $80 - (-15) = 95$.
+- **4. Verdadero:** A diferencia del primer problema donde eran 3 estados (33,3%), al añadir el clima lluvioso, Laplace divide las probabilidades a partes iguales entre los 4 estados, es decir, 1/4 o 25% para cada uno.
+- **5. Verdadero:** Al promediar escenarios (Laplace da 36,25 de media) y ponderar extremos (Optimista con 85, Hurwicz con 53), el Delivery despunta como la mejor inversión global según estos tres criterios racionales.
