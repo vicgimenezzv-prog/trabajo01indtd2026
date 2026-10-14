@@ -3,7 +3,7 @@ title: "Problemas Individuales - Teoría de la Decisión"
 author: "Victoria Giménez Vioque"
 format: 
  html: default
- pdf: default
+ typst: default
 editor: visual
 ---
 
